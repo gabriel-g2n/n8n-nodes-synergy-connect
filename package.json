@@ -1,0 +1,43 @@
+{
+	"name": "n8n-nodes-synergy-connect",
+	"version": "0.1.0",
+	"description": "n8n community nodes for Synergy Connect WhatsApp Cloud API",
+	"keywords": [
+		"n8n-community-node-package"
+	],
+	"license": "MIT",
+	"author": {
+		"name": "Gabriel Augusto"
+	},
+	"main": "index.js",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "n8n-node build",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lintfix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "npm run build"
+	},
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"credentials": [
+			"dist/credentials/SynergyConnectApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/SynergyConnect/SynergyConnect.node.js",
+			"dist/nodes/SynergyConnectTrigger/SynergyConnectTrigger.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "latest",
+		"@types/node": "^25.3.5",
+		"n8n-workflow": "*",
+		"typescript": "~5.7.0"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
