@@ -9,9 +9,16 @@ export class SynergyConnectApi implements ICredentialType {
 	name = 'synergyConnectApi';
 	displayName = 'Synergy Connect API';
 	icon = { light: 'file:../nodes/SynergyConnect/synergyConnect.svg', dark: 'file:../nodes/SynergyConnect/synergyConnect.svg' } as const;
-	documentationUrl = 'https://synergyconnect.com.br/docs';
+	documentationUrl = 'https://legacy.synergyconnect.com.br/docs';
 
 	properties: INodeProperties[] = [
+		{
+			displayName: 'Base URL',
+			name: 'baseUrl',
+			type: 'string',
+			default: 'https://legacy.synergyconnect.com.br/api/v1',
+			description: 'Base URL of the Synergy Connect API',
+		},
 		{
 			displayName: 'API Key',
 			name: 'apiKey',
@@ -50,7 +57,8 @@ export class SynergyConnectApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: 'https://synergyconnect.com.br/api/v1',
+			baseURL:
+				"={{($credentials.baseUrl || 'https://legacy.synergyconnect.com.br/api/v1').replace(/[/]+$/, '')}}",
 			url: '=/{{$credentials.phoneNumberId}}/messages',
 			method: 'POST',
 			body: {

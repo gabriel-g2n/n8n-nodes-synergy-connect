@@ -1,6 +1,6 @@
 # n8n-nodes-synergy-connect
 
-Community nodes for [n8n](https://n8n.io/) that integrate with [Synergy Connect](https://synergyconnect.com.br/) — a proxy for the WhatsApp Business Cloud API.
+Community nodes for [n8n](https://n8n.io/) that integrate with [Synergy Connect](https://legacy.synergyconnect.com.br/) — a proxy for the WhatsApp Business Cloud API.
 
 These nodes allow you to send and receive WhatsApp messages directly from your n8n workflows using the Synergy Connect platform.
 
@@ -64,13 +64,16 @@ npm install n8n-nodes-synergy-connect
 
 ## Credentials
 
-You need a Synergy Connect API key to use these nodes. Get yours at [synergyconnect.com.br](https://synergyconnect.com.br/).
+You need a Synergy Connect API key to use these nodes. Get yours at [legacy.synergyconnect.com.br](https://legacy.synergyconnect.com.br/).
 
 | Field | Required | Description |
 |-------|----------|-------------|
+| Base URL | No | API base URL (default: `https://legacy.synergyconnect.com.br/api/v1`) |
 | API Key | Yes | Your Synergy Connect API key (starts with `sk_`) |
 | Phone Number ID | Yes | Phone Number ID of your WhatsApp instance |
 | WABA ID | No | WhatsApp Business Account ID (required for template operations) |
+
+> **Note:** Starting with 0.2.0, the API uses the `legacy.synergyconnect.com.br` host. The base URL can be configured in the credential. If you are on 0.1.2 or earlier, you must update the package.
 
 ## Usage
 
@@ -91,7 +94,7 @@ You need a Synergy Connect API key to use these nodes. Get yours at [synergyconn
 
 ## Links
 
-- [Synergy Connect](https://synergyconnect.com.br/)
+- [Synergy Connect](https://legacy.synergyconnect.com.br/)
 - [n8n Community Nodes Documentation](https://docs.n8n.io/integrations/community-nodes/)
 
 ## License

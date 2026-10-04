@@ -6,7 +6,7 @@ import type {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
-import { synergyConnectApiRequest } from './GenericFunctions';
+import { getBaseUrl, synergyConnectApiRequest } from './GenericFunctions';
 import { messageOperations, messageFields } from './descriptions/MessageDescription';
 import { mediaOperations, mediaFields } from './descriptions/MediaDescription';
 import { templateOperations, templateFields } from './descriptions/TemplateDescription';
@@ -227,6 +227,7 @@ async function handleMedia(
 ): Promise<IDataObject> {
 	switch (operation) {
 		case 'upload': {
+			const baseUrl = getBaseUrl(await ctx.getCredentials('synergyConnectApi'));
 			const binaryPropertyName = ctx.getNodeParameter('binaryPropertyName', i) as string;
 			const mimeType = ctx.getNodeParameter('mimeType', i) as string;
 			const binaryData = await ctx.helpers.getBinaryDataBuffer(i, binaryPropertyName);
@@ -236,7 +237,7 @@ async function handleMedia(
 				'synergyConnectApi',
 				{
 					method: 'POST',
-					url: `https://synergyconnect.com.br/api/v1/${phoneNumberId}/media`,
+					url: `${baseUrl}/${phoneNumberId}/media`,
 					body: {
 						messaging_product: 'whatsapp',
 						type: mimeType,
@@ -260,13 +261,14 @@ async function handleMedia(
 			return await synergyConnectApiRequest.call(ctx, 'GET', `/${mediaId}`);
 		}
 		case 'download': {
+			const baseUrl = getBaseUrl(await ctx.getCredentials('synergyConnectApi'));
 			const mediaUrl = ctx.getNodeParameter('mediaUrl', i) as string;
 			const response = await ctx.helpers.httpRequestWithAuthentication.call(
 				ctx,
 				'synergyConnectApi',
 				{
 					method: 'GET',
-					url: `https://synergyconnect.com.br/api/v1/media/download`,
+					url: `${baseUrl}/media/download`,
 					qs: { url: mediaUrl },
 					encoding: 'arraybuffer',
 					returnFullResponse: true,
