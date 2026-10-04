@@ -1,6 +1,6 @@
 # Synergy Connect — API Reference
 
-Base URL: `https://synergyconnect.com.br/api/v1`
+Base URL: `https://legacy.synergyconnect.com.br/api/v1`
 
 A API do Synergy Connect é um proxy autenticado para a WhatsApp Business Cloud API (Meta Graph API v22.0). Todas as chamadas de envio de mensagens, mídia e templates são encaminhadas diretamente ao Meta, então o formato de request/response segue a [documentação oficial do WhatsApp Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api).
 
@@ -625,7 +625,7 @@ GET /api/v1/{mediaId}
 {
   "id": "media_id_123456",
   "messaging_product": "whatsapp",
-  "url": "https://synergyconnect.com.br/api/v1/media/download?url=...",
+  "url": "https://legacy.synergyconnect.com.br/api/v1/media/download?url=...",
   "mime_type": "image/jpeg",
   "sha256": "abc123...",
   "file_size": 12345
